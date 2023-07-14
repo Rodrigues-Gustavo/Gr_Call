@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 
 import { Heading, Text, MultiStep, TextInput, Button } from '@ignite-ui/react'
 import { Container, Form, FormError, Header } from "./styles"
@@ -35,12 +35,11 @@ export default function Register() {
   })
 
   const router = useRouter()
-  // const pathname = usePathname()
-  // const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
-  console.log(router)
-  // console.log(pathname)
-  // console.log(searchParams)
+  // console.log(router)
+  console.log(searchParams)
  
 
   // useEffect(() => {
@@ -48,12 +47,11 @@ export default function Register() {
   //     setValue('username', String(router.query.username))
   //   }
   // }, [router.query?.username, setValue])
-
-  // useEffect(() => {
-  //   if (pathname.) {
-  //     setValue('username', String(pathname))
-  //   }
-  // })
+  useEffect(() => {
+    if (searchParams) {
+      setValue('username', String(searchParams))
+    }
+  })
 
   async function handleRegister(data: RegisterformData) {
     console.log(data)
