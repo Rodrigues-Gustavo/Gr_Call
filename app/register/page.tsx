@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 
 import { Heading, Text, MultiStep, TextInput, Button } from '@ignite-ui/react'
 import { Container, Form, FormError, Header } from "./styles"
@@ -6,6 +6,8 @@ import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
 
 const registerFormSchema = z.object({
   username: z
@@ -23,9 +25,35 @@ const registerFormSchema = z.object({
 type RegisterformData = z.infer<typeof registerFormSchema>
 
 export default function Register() {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<RegisterformData>({
+  const { 
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isSubmitting } 
+  } = useForm<RegisterformData>({
     resolver: zodResolver(registerFormSchema)
   })
+
+  const router = useRouter()
+  // const pathname = usePathname()
+  // const searchParams = useSearchParams()
+
+  console.log(router)
+  // console.log(pathname)
+  // console.log(searchParams)
+ 
+
+  // useEffect(() => {
+  //   if (router.query.username) {
+  //     setValue('username', String(router.query.username))
+  //   }
+  // }, [router.query?.username, setValue])
+
+  // useEffect(() => {
+  //   if (pathname.) {
+  //     setValue('username', String(pathname))
+  //   }
+  // })
 
   async function handleRegister(data: RegisterformData) {
     console.log(data)
