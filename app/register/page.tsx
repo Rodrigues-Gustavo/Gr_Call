@@ -6,7 +6,7 @@ import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
 const registerFormSchema = z.object({
@@ -33,23 +33,12 @@ export default function Register() {
   } = useForm<RegisterformData>({
     resolver: zodResolver(registerFormSchema)
   })
-
-  const router = useRouter()
-  const pathname = usePathname()
+  
   const searchParams = useSearchParams()
 
-  // console.log(router)
-  console.log(searchParams)
- 
-
-  // useEffect(() => {
-  //   if (router.query.username) {
-  //     setValue('username', String(router.query.username))
-  //   }
-  // }, [router.query?.username, setValue])
   useEffect(() => {
-    if (searchParams) {
-      setValue('username', String(searchParams))
+    if (searchParams.get('username')) {
+      setValue('username', String(searchParams.get('username')))
     }
   })
 
@@ -73,7 +62,7 @@ export default function Register() {
         <label>
           <Text size="sm">Nome de usuário</Text>
           <TextInput
-            prefix="Gr_call.com"
+            prefix="Gr_call.com/"
             placeholder="seu-usuario"
             {...register('username')}
           />
