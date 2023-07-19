@@ -27,7 +27,6 @@ export function ClaimUsernameform() {
 
   async function handleClaimUsername(data: claimusernameFormData) {
     const { username } = data
-    console.log(username)
 
     await router.push(`/register?username=${username}`)
   }
